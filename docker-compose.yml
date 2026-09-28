@@ -1,0 +1,23 @@
+services:
+  mpd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mpd
+    ports:
+      - "6600:6600/tcp"
+      - "8800:8800/tcp"
+    environment:
+      - PULSE_SERVER=unix:/tmp/pulse-socket
+    volumes:
+      - /mnt/srv/Docker/data/mpd:/var/lib/mpd
+      - /mnt/archive/MusicData/MP3:/music
+      - ./mpd.conf:/etc/mpd.conf
+      - ${XDG_RUNTIME_DIR}/pulse/native:/tmp/pulse-socket:ro
+    restart: unless-stopped
+    networks:
+      - default
+networks:
+  default:
+    name: ${NETWORK}
+    external: true
