@@ -19,10 +19,10 @@ RUN apk add --no-cache \
 
 WORKDIR /src
 
-RUN wget https://musicpd.org/download/mpd/0.24/mpd-0.24.15.tar.xz && \
-    tar -xf mpd-0.24.15.tar.xz
+RUN wget https://www.musicpd.org/download/mpd/0.24/mpd-0.24.18.tar.xz && \
+    tar -xf mpd-0.24.18.tar.xz
 
-WORKDIR /src/mpd-0.24.15
+WORKDIR /src/mpd-0.24.18
 
 # wildmidi 옵션 해제(-Dwildmidi=disabled)
 RUN meson setup build --buildtype=release \
